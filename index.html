@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular UI/UX</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <div class="frame"></div>
+
+    <img     src="./book.jpg" alt="book">
+
+    <section class="ex1">
+        <div class="mask">
+            <h1 class="hide">Stories</h1>
+        </div>
+        <div class="mask">
+            <p class="hide text1">A collection of short stories about UI/UX designers</p>
+        </div>
+        <div class="mask">
+            <p class="hide text2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="mask">
+            <p class="hide text3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.3/umd/index.min.js"></script>
+
+
+
+    <script>
+
+        let tl = gsap.timeline();
+        const textLines = document.querySelectorAll(".text1, .text2, .text3")
+
+        textLines.forEach(textLine => {
+            const split = new SplitType(textLine, {
+                types: "chars"
+            })
+        })
+
+        tl.to("img", {
+            clipPath: 'polygon(0 0, 100% 0, 100% 99%, 0 99%)',
+            scale: 1.1,
+            duration: 1.4
+        })
+        tl.to(".hide", {
+            duration: 1.4,
+            y: 0,
+            stagger: 0.1,
+            ease: "power2"
+        }, "-=1")
+        .from('.char', {
+            yPercent: -100,
+            stagger: 0.007,
+            ease: "power2.out"
+        }, ".6")
+        .to(".frame", {
+            opacity: 1,
+            scale: 1
+        }, "-=1.4")
+
+    </script>
+    
+</body>
+</html>
